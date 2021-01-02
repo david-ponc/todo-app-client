@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export const Main = styled(motion.main)`
   width: 100%;
-  height: calc(100vh - 200px);
+  height: 100%;
   display: grid;
   place-items: center;
 `
@@ -14,6 +14,12 @@ export const Form = styled(motion.form)`
   display: grid;
   grid-auto-flow: row;
   gap: 2rem 1.5rem;
+
+  @media screen and (max-width: 768px) {
+      max-width: 100%;
+      width: 100%;
+      padding: 0 1rem;
+  }
 `
 
 export const Title = styled.h5`
@@ -32,4 +38,7 @@ export const Text = styled.p`
   font-size: 0.875rem;
   margin: 0;
   color: ${({ theme }) => theme.colors.body.secondText};
+  @media screen and (max-width: 768px) {
+      font-size: 1rem;
+  }
 `

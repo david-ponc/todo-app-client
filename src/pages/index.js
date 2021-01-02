@@ -14,7 +14,7 @@ const initialTasks = [
   { _id: '7638', content: 'Reunión para análisis de requerimientos', category: 'work', completed: false },
   { _id: '5634', content: 'Hacer un todo list', category: 'personal', completed: false }]
 
-function LandingPage () {
+function LandingPage ({ isMobileView }) {
   const router = useRouter()
   const [tasks, setTasks] = useState([...initialTasks])
 
@@ -49,16 +49,23 @@ function LandingPage () {
         </Landing>
         {tasks.length === 0 && <div style={{ width: '32px', margin: '7rem auto 0' }}><Loader size={32} /></div>}
         <TaskContainer initial="initial" animate="animate" exit="exit" variants={varsLanding}>
-          <TaskList tasks={tasks} action={taskCompleted} />
+          <TaskList isMobile={isMobileView} tasks={tasks} action={taskCompleted} />
         </TaskContainer>
       </div>
     </>
   )
 }
 
-export async function getServerSideProps () {
+export async function getServerSideProps (ctx) {
+  const isMobileView = (ctx.req
+    ? ctx.req.headers['user-agent']
+    : navigator.userAgent).match(
+    /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
+  )
   return {
-    props: {}
+    props: {
+      isMobileView
+    }
   }
 }
 
