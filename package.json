@@ -1,0 +1,28 @@
+{
+  "name": "front",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "date-fns": "^2.16.1",
+    "framer-motion": "^2.9.5",
+    "next": "10.0.3",
+    "nookies": "^2.5.0",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-loader-spinner": "^3.1.14",
+    "styled-components": "^5.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.15.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.21.5"
+  }
+}
