@@ -15,6 +15,9 @@ export const Field = styled.input`
   &::placeholder {
     color: ${({ theme }) => theme.colors.field.placeholder};
   }
+  @media screen and (max-width: 768px) {
+      font-size: 1rem;
+  }
 `
 
 export const Wrapper = styled.div`
@@ -36,4 +39,7 @@ export const Desc = styled(motion.span)`
   font-size: 0.75rem;
   font-weight: 500;
   color: ${({ theme, error }) => error ? theme.colors.field.descError : theme.colors.field.desc};
+  @media screen and (max-width: 768px) {
+      font-size: 0.875rem;
+  }
 `

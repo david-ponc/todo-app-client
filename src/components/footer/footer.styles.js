@@ -17,12 +17,26 @@ export const Container = styled.div`
   padding: 0.375rem 1em;
   display: grid;
   grid-template-columns: auto 1fr;
+  @media screen and (max-width: 768px) {
+    grid-template-columns: auto 1fr auto;
+  }
 `
 
 export const TextStyled = styled.span`
   font-weight: 500;
   font-size: 0.75rem;
   color: ${({ theme }) => theme.colors.footer.color};
+
+  &:nth-child(2) {
+    justify-self: center;
+  }
+
+  @media screen and (max-width: 768px) {
+    &:nth-child(2) {
+      grid-column: 3 / 4;
+      justify-self: flex-end;
+    }
+  }
 `
 
 export const LinkStyled = styled.a`

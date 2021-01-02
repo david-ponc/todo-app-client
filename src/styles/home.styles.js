@@ -18,7 +18,11 @@ export const Title = styled.h1`
 
 export const Subtitle = styled.h2`
   font-weight: 300;
-  line-height: 0.1;
+  @media screen and (max-width: 768px) {
+    & {
+      line-height: 1;
+    }
+  }
 `
 export const Leyend = styled.h5`
   font-size: 1.125rem;
@@ -28,6 +32,11 @@ export const Leyend = styled.h5`
 export const TaskContainer = styled(motion.section)`
   max-width: 558px;
   margin: 5rem auto 1rem;
+  @media screen and (max-width: 768px) {
+    & {
+      padding: 0 1rem;
+    }
+  }
   /* display: grid;
   grid-auto-rows: rows;
   gap: 1rem; */

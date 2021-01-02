@@ -3,9 +3,14 @@ import { motion } from 'framer-motion'
 
 export const Container = styled.div`
   width: 100%;
-  height: 85vh;
+  height: 100%;
   display: grid;
   place-items: center;
+  @media screen and (max-width: 768px) {
+    & {
+      padding: 0 1rem;
+    }
+  }
 `
 
 export const Wrapper = styled(motion.main)`
@@ -25,6 +30,20 @@ export const Form = styled.form`
   button {
     grid-column: 1 / span 2;
   }
+
+  @media screen and (max-width: 768px) {
+    & {
+      grid-template-columns: 1fr;
+      margin-bottom: 2rem;
+    }
+    & > p {
+      grid-column: auto;
+    }
+    
+    button {
+      grid-column: auto;
+    }
+  }
 `
 
 export const Title = styled.h5`
@@ -35,6 +54,10 @@ export const Text = styled.p`
   font-size: 0.875rem;
   margin: 0 0 2rem;
   color: ${({ theme }) => theme.colors.body.secondText};
+  @media screen and (max-width: 768px) {
+      font-size: 1rem;
+      margin: 1rem 0 2rem;
+  }
 `
 
 export const Terms = styled.p`

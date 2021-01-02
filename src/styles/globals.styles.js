@@ -65,6 +65,10 @@ export const GlobalStyle = createGlobalStyle`
     outline: 0;
     font-size: 0.875rem;
     font-family: Poppins, system-ui;
+
+    @media screen and (max-width: 768px) {
+      font-size: 1rem;
+    }
   }
 
   h1 {
@@ -105,6 +109,9 @@ export const GlobalStyle = createGlobalStyle`
     &::selection {
       background: ${({ theme }) => theme.colors.body.selection};
     }
+    @media screen and (max-width: 768px) {
+      font-size: 1.5rem;
+    }
   }
 
   p::selection,
@@ -122,5 +129,6 @@ export const GlobalStyle = createGlobalStyle`
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
+    overflow-x: hidden;
   }
 `
