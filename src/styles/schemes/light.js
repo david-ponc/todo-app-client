@@ -13,7 +13,8 @@ export default {
     },
     link: {
       default: 'var(--gray-500)',
-      active: 'var(--gray-100)'
+      active: 'var(--gray-100)',
+      hover: 'var(--gray-700)'
     },
     button: {
       primary: {

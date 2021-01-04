@@ -1,7 +1,7 @@
 import Logo from 'components/icons/logo'
-import { Header, Hyper, Links, WrapperMenu, MenuContainer, MenuItem, TitleMenu } from './navbar.styles'
+import { MenuMobileContainer, Header, Hyper, Links, WrapperMenu, MenuContainer, MenuItem, TitleMenu } from './navbar.styles'
 import ThemeContext from 'context/ThemeContext'
-import { useContext, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import ToggleTheme from 'components/toggle_theme'
 import Router, { useRouter } from 'next/router'
 import Link from 'next/link'
@@ -11,14 +11,20 @@ import Logout from 'components/icons/logout'
 import User from 'components/icons/user'
 import { destroyCookie } from 'nookies'
 import { AnimatePresence } from 'framer-motion'
+import Menu from 'components/icons/menu'
 
 function Navbar ({ user }) {
   const { theme, switchTheme } = useContext(ThemeContext)
-  // const { user } = useContext(UserContext)
+  const linkRef = useRef(null)
   const router = useRouter()
 
   const changeTheme = () => {
+    toggleMenuMobile()
     switchTheme(theme.title)
+  }
+
+  const toggleMenuMobile = () => {
+    linkRef.current.style.right === '0px' ? linkRef.current.style.right = '-100%' : linkRef.current.style.right = '0px'
   }
 
   return (
@@ -26,7 +32,10 @@ function Navbar ({ user }) {
       <Link href={user ? '/dashboard' : '/'}>
         <a><Logo /></a>
       </Link>
-      <Links>
+      <MenuMobileContainer onClick={toggleMenuMobile}>
+        <Menu size={21} />
+      </MenuMobileContainer>
+      <Links ref={linkRef}>
         {/* eslint-disable-next-line multiline-ternary */}
         { user ? <UserAction name={`${user.name}`} /> : (
           <>
@@ -56,13 +65,13 @@ function UserAction ({ name }) {
         <ChevronDown size={18} />
       </TitleMenu>
       <AnimatePresence>
-      {visible && <Menu onMouseLeave={() => setVisible(false)}/>}
+      {visible && <MenuUserAction onMouseLeave={() => setVisible(false)}/>}
       </AnimatePresence>
     </WrapperMenu>
   )
 }
 
-function Menu ({ ...props }) {
+function MenuUserAction ({ ...props }) {
   const handleClick = () => {
     destroyCookie(null, 'auth-token')
     destroyCookie(null, 'identifier')

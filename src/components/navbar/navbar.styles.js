@@ -23,10 +23,53 @@ export const Links = styled.nav`
   grid-auto-flow: column;
   align-items: center;
   gap: 2rem;
+
+  @media screen and (max-width: 768px) {
+    position: fixed;
+    width: 100%;
+    height: calc(100vh - 76px);
+    top: 76px;
+    right: -100%;
+    grid-auto-flow: row;
+    grid-template-rows: repeat(4, 4rem);
+    padding: 1rem;
+    background: ${({ theme }) => theme.colors.body.background};
+    transition: background 320ms ease,
+    color 320ms ease,
+    border 320ms ease,
+    right 320ms ease;
+
+    & > a,
+    & > button,
+    & > a > button {
+      width: 100%;
+      height: 100%;
+      font-size: 1.5rem;
+    }
+
+    & > a,
+    & > button {
+      &:hover {
+      background: ${({theme}) => theme.colors.link.hover};
+      }
+    }
+  }
 `
 
 export const Hyper = styled.span`
   color: ${({ theme, active }) => active ? theme.colors.link.active : theme.colors.link.default};
+  @media screen and (max-width: 768px) {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    place-items: center;
+    border-radius: 0.5rem;
+
+    &:hover {
+      background: ${({theme}) => theme.colors.link.hover};
+    }
+  }
 `
 
 export const TitleMenu = styled.div`
@@ -66,5 +109,13 @@ export const MenuItem = styled.span`
   &:hover {
     background: ${({ theme }) => theme.colors.dropdown.hover};
     color: ${({ theme, active }) => active ? theme.colors.dropdown.itemHoverActive : theme.colors.dropdown.itemHover};
+  }
+`
+export const MenuMobileContainer = styled.div`
+  cursor: pointer;
+  display: none;
+
+  @media screen and (max-width: 768px) {
+    display: block;
   }
 `
