@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 export const Wrapper = styled.div`
   position: relative;
   align-self: flex-start;
-  z-index: 50;
+  z-index: 3;
 `
 
 export const Overlay = styled.div`
@@ -13,7 +13,7 @@ export const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 45;
+  z-index: 2;
   display: ${({ visible }) => visible ? 'static' : 'none'};
 `
 
@@ -30,7 +30,7 @@ export const Tape = styled.div`
   box-shadow: ${({ theme }) => theme.colors.dropdown.border};
   color: ${({ theme }) => theme.colors.dropdown.color};
   position: relative;
-  z-index: 50;
+  z-index: 3;
 `
 
 export const ItemsContainer = styled(motion.div)`
@@ -41,7 +41,7 @@ export const ItemsContainer = styled(motion.div)`
   box-shadow: ${({ theme }) => theme.colors.dropdown.border};
   padding: 1rem;
   border-radius: 11px;
-  z-index: 50;
+  z-index: 3;
 `
 export const ItemStyle = styled.span`
   display: grid;

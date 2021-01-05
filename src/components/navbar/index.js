@@ -13,7 +13,7 @@ import { destroyCookie } from 'nookies'
 import { AnimatePresence } from 'framer-motion'
 import Menu from 'components/icons/menu'
 
-function Navbar ({ user }) {
+function Navbar ({ user, isMobileView }) {
   const { theme, switchTheme } = useContext(ThemeContext)
   const linkRef = useRef(null)
   const router = useRouter()
@@ -24,7 +24,9 @@ function Navbar ({ user }) {
   }
 
   const toggleMenuMobile = () => {
-    linkRef.current.style.right === '0px' ? linkRef.current.style.right = '-100%' : linkRef.current.style.right = '0px'
+    if (isMobileView) {
+      linkRef.current.style.right === '0px' ? linkRef.current.style.right = '-100%' : linkRef.current.style.right = '0px'
+    }
   }
 
   return (
@@ -37,7 +39,7 @@ function Navbar ({ user }) {
       </MenuMobileContainer>
       <Links ref={linkRef}>
         {/* eslint-disable-next-line multiline-ternary */}
-        { user ? <UserAction name={`${user.name}`} /> : (
+        { user ? <UserAction name={`${user.name}`} isMobileView={isMobileView} /> : (
           <>
             <Link href="/">
               <a><Hyper active={router.pathname === '/'}>Inicio</Hyper></a>
@@ -56,18 +58,36 @@ function Navbar ({ user }) {
   )
 }
 
-function UserAction ({ name }) {
+function UserAction ({ name, isMobileView }) {
   const [visible, setVisible] = useState(false)
+
+  const handleClick = () => {
+    destroyCookie(null, 'auth-token')
+    destroyCookie(null, 'identifier')
+    localStorage.removeItem('r-as0dj')
+    localStorage.removeItem('r-as1dj')
+    Router.push('/')
+  }
+
   return (
-    <WrapperMenu>
-      <TitleMenu onClick={() => setVisible(!visible)}>
-        <span>{name}</span>
-        <ChevronDown size={18} />
-      </TitleMenu>
-      <AnimatePresence>
-      {visible && <MenuUserAction onMouseLeave={() => setVisible(false)}/>}
-      </AnimatePresence>
-    </WrapperMenu>
+    <>
+    { isMobileView ?
+      <>
+        <MenuItem>Perfil <User /> </MenuItem>
+        <MenuItem onClick={handleClick} >Salir <Logout /> </MenuItem>
+      </>
+      : 
+        <WrapperMenu>
+          <TitleMenu onClick={() => setVisible(!visible)}>
+            <span>{name}</span>
+            <ChevronDown size={18} />
+          </TitleMenu>
+          <AnimatePresence>
+          {visible && <MenuUserAction onMouseLeave={() => setVisible(false)}/>}
+          </AnimatePresence>
+        </WrapperMenu>
+    }
+    </>
   )
 }
 

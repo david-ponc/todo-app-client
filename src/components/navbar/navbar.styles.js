@@ -110,6 +110,12 @@ export const MenuItem = styled.span`
     background: ${({ theme }) => theme.colors.dropdown.hover};
     color: ${({ theme, active }) => active ? theme.colors.dropdown.itemHoverActive : theme.colors.dropdown.itemHover};
   }
+
+  @media screen and (max-width: 768px) {
+    font-size: 1.5rem;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+  }
 `
 export const MenuMobileContainer = styled.div`
   cursor: pointer;

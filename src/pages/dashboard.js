@@ -51,7 +51,7 @@ function DashboardPage ({ serverTasks, user, isMobileView }) {
       <Head>
         <title>To-Do List App | {user.name}</title>
       </Head>
-      <Navbar user={user} />
+      <Navbar user={user} isMobileView={isMobileView} />
       <Main initial="initial" animate="animate" exit="exit" variants={varsDashPage}>
         <Greeting>{greeting}, {user.name}</Greeting>
         <ActualDate>Hoy es {format(new Date(), "EEEE, d 'de' MMMM", { locale: es })}</ActualDate>
