@@ -24,9 +24,7 @@ function Navbar ({ user, isMobileView }) {
   }
 
   const toggleMenuMobile = () => {
-    if (isMobileView) {
       linkRef.current.style.right === '0px' ? linkRef.current.style.right = '-100%' : linkRef.current.style.right = '0px'
-    }
   }
 
   return (
