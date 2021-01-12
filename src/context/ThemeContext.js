@@ -21,8 +21,10 @@ export function ThemeContextProvider ({ children }) {
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (evt) => {
         if (evt.matches) {
           setTheme(THEMES.dark)
+          setCookie(null, 'theme', 'dark')
         } else {
           setTheme(THEMES.light)
+          setCookie(null, 'theme', 'light')
         }
       })
     }
