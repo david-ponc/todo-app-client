@@ -17,8 +17,6 @@ function Navbar ({ links, navbarButton, user }) {
     query: '(max-width: 768px)'
   })
 
-  useEffect(() => console.log(isMobile), [isMobile])
-
   useEffect(() => setVisibleMenu(false), [])
 
   const sendToJoin = () => router.push(navbarButton.path)

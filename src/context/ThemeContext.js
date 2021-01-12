@@ -1,22 +1,40 @@
 import { createContext, useState, useEffect } from 'react'
 import dark from 'styles/schemes/dark'
 import light from 'styles/schemes/light'
+import { setCookie, parseCookies } from 'nookies'
+
+const THEMES = {
+  dark,
+  light
+}
 
 const ThemeContext = createContext({})
 
 export function ThemeContextProvider ({ children }) {
-  const [theme, setTheme] = useState(dark)
+  const [theme, setTheme] = useState(light)
 
   useEffect(() => {
-    const current = localStorage.getItem('theme')
-    const newTheme = current === 'light' ? light : dark
-    setTheme(newTheme)
+    if (parseCookies()?.theme) {
+      const { theme } = parseCookies()
+      setTheme(THEMES[theme])
+    } else {
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (evt) => {
+        if (evt.matches) {
+          setTheme(THEMES.dark)
+        } else {
+          setTheme(THEMES.light)
+        }
+      })
+    }
+    return () => {
+      window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change')
+    }
   }, [])
 
-  const switchTheme = current => {
-    const newTheme = current === 'light' ? dark : light
-    localStorage.setItem('theme', current === 'light' ? 'dark' : 'light')
-    setTheme(newTheme)
+  const switchTheme = (current) => {
+    const switched = current === 'light' ? 'dark' : 'light'
+    setCookie(null, 'theme', switched)
+    setTheme(THEMES[switched])
   }
 
   return (
