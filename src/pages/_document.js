@@ -20,19 +20,19 @@ export default class MyDocument extends Document {
 
       if (!authToken) {
         if (ctx.pathname === '/dashboard') {
-          redirectUser(ctx, '/ingreso')
+          redirectUser(ctx, '/login')
         }
       } else {
         if (ctx.pathname === '/') {
           redirectUser(ctx, '/dashboard')
         }
-        if (ctx.pathname === '/ingreso') {
+        if (ctx.pathname === '/login') {
           redirectUser(ctx, '/dashboard')
         }
-        if (ctx.pathname === '/registro') {
+        if (ctx.pathname === '/join') {
           redirectUser(ctx, '/dashboard')
         }
-        if (ctx.pathname === '/confirmacion') {
+        if (ctx.pathname === '/confirm') {
           redirectUser(ctx, '/dashboard')
         }
       }

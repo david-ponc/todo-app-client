@@ -22,7 +22,7 @@ function MyApp ({ Component, pageProps }) {
           <Component {...pageProps} key={route} t={t[route]} />
         </AnimatePresence>
       </UserContextProvider>
-      <Footer content={t[route].footer} />
+      <Footer content={t[route]?.footer} />
     </ThemeProvider>
   )
 }
