@@ -1,16 +1,12 @@
-import ChevronDown from 'components/icons/chevronDown'
-import Grid from 'components/icons/grid'
-import Home from 'components/icons/home'
-import Personal from 'components/icons/personal'
-import Work from 'components/icons/work'
 import { useState } from 'react'
 import { Wrapper, ItemsContainer, Tape, ItemStyle, Overlay } from './dropdown.styles'
 import { AnimatePresence } from 'framer-motion'
+import { HiBriefcase, HiChevronDown, HiHome, HiUser, HiViewGrid } from 'react-icons/hi'
 
 const categories = [
-  { title: 'Personal', icon: <Personal />, meta: 'personal' },
-  { title: 'Hogar', icon: <Home />, meta: 'home' },
-  { title: 'Trabajo', icon: <Work />, meta: 'work' }
+  { title: 'Personal', icon: <HiUser size={21} />, meta: 'personal' },
+  { title: 'Hogar', icon: <HiHome size={21} />, meta: 'home' },
+  { title: 'Trabajo', icon: <HiBriefcase size={21} />, meta: 'work' }
 ]
 
 export default function Dropdown ({ category, setCategory }) {
@@ -25,11 +21,11 @@ export default function Dropdown ({ category, setCategory }) {
     <Wrapper>
       <Overlay visible={visible} onClick={() => setVisible(false)} />
       <Tape onClick={() => setVisible(!visible)}>
-        { category === '' && <Grid />}
-        { category === 'home' && <Home />}
-        { category === 'personal' && <Personal />}
-        { category === 'work' && <Work />}
-        <ChevronDown />
+        { category === '' && <HiViewGrid size={21} />}
+        { category === 'home' && <HiHome size={21} />}
+        { category === 'personal' && <HiUser size={21} />}
+        { category === 'work' && <HiBriefcase size={21} />}
+        <HiChevronDown size={18} />
       </Tape>
       <AnimatePresence>
         { visible &&

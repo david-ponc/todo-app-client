@@ -6,32 +6,41 @@ import { useState, useEffect } from 'react'
 import { Main, Greeting, ActualDate, Text } from 'styles/dashboard.styles'
 import { varsDashPage } from 'styles/variants'
 import { destroyCookie, parseCookies } from 'nookies'
-import { es } from 'date-fns/locale'
-import { format } from 'date-fns'
 import { getTasksOfCurrentUser, getUser, completeTask } from 'services/api'
+import { useRouter } from 'next/router'
 
-function getGreeting () {
+function getGreeting (greetings) {
   const time = new Date().getHours()
   if (time < 5) {
-    return 'Buena madrugada'
+    return greetings[0]
   } else if (time >= 5 && time < 8) {
-    return 'Buena mañana'
+    return greetings[1]
   } else if (time >= 8 && time < 12) {
-    return 'Buen día'
-  } else if (time >= 12 && time < 15) {
-    return 'Buena tarde'
-  } else if (time >= 15) {
-    return 'Buena noche'
+    return greetings[2]
+  } else if (time >= 12 && time < 19) {
+    return greetings[3]
+  } else if (time >= 19) {
+    return greetings[4]
   }
 }
 
-function DashboardPage ({ serverTasks, user, isMobileView }) {
+function showDate (locale, date) {
+  const tmpDate = date
+  const month = new Intl.DateTimeFormat(locale, { month: 'long' }).format(new Date())
+  const weekday = new Intl.DateTimeFormat(locale, { weekday: 'long' }).format(new Date())
+  const day = new Intl.DateTimeFormat(locale, { day: 'numeric' }).format(new Date())
+  const formatDate = tmpDate.replace('weekday', weekday).replace('month', month).replace(/\bday\b/, day)
+  return formatDate
+}
+
+function DashboardPage ({ serverTasks, user, t }) {
+  const router = useRouter()
   const [tasks, setTasks] = useState(serverTasks)
-  const [greeting, setGreeting] = useState(getGreeting())
+  const [greeting, setGreeting] = useState(getGreeting(t.greetings))
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setGreeting(getGreeting())
+      setGreeting(getGreeting(t.greetings))
     }, 5000)
     return () => clearInterval(interval)
   }, [greeting])
@@ -49,16 +58,16 @@ function DashboardPage ({ serverTasks, user, isMobileView }) {
   return (
     <>
       <Head>
-        <title>To-Do List App | {user.name}</title>
+        <title>To-do List | {user.name}</title>
       </Head>
-      <Navbar user={user} isMobileView={isMobileView} />
+      <Navbar user={user} {...{ links: t.links, navbarButton: t.navbarButton }} />
       <Main initial="initial" animate="animate" exit="exit" variants={varsDashPage}>
         <Greeting>{greeting}, {user.name}</Greeting>
-        <ActualDate>Hoy es {format(new Date(), "EEEE, d 'de' MMMM", { locale: es })}</ActualDate>
-        {tasks.length > 0 && <Text>Tienes <strong>{tasks.length}</strong> tarea{tasks.length > 1 ? 's' : ''} pendiente{tasks.length > 1 ? 's' : ''}.</Text>}
-        {!tasks.length && <Text>No tienes tareas pendientes 😉</Text>}
-        <TaskCreator tasks={tasks} setTasks={setTasks} isMobileView={isMobileView} />
-        <TaskList isMobile={isMobileView} tasks={tasks} action={taskCompleted} />
+        <ActualDate>{showDate(router.locale, t.date)}</ActualDate>
+        {tasks.length > 0 && <Text>{t.countTasks[0]} <strong>{tasks.length}</strong> {t.countTasks[1]}</Text>}
+        {!tasks.length && <Text>{t.p} 😉</Text>}
+        <TaskCreator placeholder={t.phTaskCreator} tasks={tasks} setTasks={setTasks} />
+        <TaskList tasks={tasks} action={taskCompleted} />
       </Main>
     </>
   )
@@ -80,17 +89,10 @@ export async function getServerSideProps (ctx) {
     destroyCookie(ctx, 'auth-token')
     console.log(error)
   }
-
-  const isMobileView = (ctx.req
-    ? ctx.req.headers['user-agent']
-    : navigator.userAgent).match(
-    /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
-  )
   return {
     props: {
       serverTasks,
-      user,
-      isMobileView
+      user
     }
   }
 }

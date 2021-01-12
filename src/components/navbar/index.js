@@ -1,108 +1,124 @@
-import Logo from 'components/icons/logo'
-import { MenuMobileContainer, Header, Hyper, Links, WrapperMenu, MenuContainer, MenuItem, TitleMenu } from './navbar.styles'
-import ThemeContext from 'context/ThemeContext'
-import { useContext, useRef, useState } from 'react'
-import ToggleTheme from 'components/toggle_theme'
-import Router, { useRouter } from 'next/router'
 import Link from 'next/link'
+import Image from 'next/image'
+import { useContext, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import Button from 'components/button'
-import ChevronDown from 'components/icons/chevronDown'
-import Logout from 'components/icons/logout'
-import User from 'components/icons/user'
+import { HiMoon, HiSun, HiCog, HiLogout } from 'react-icons/hi'
+import ThemeContext from 'context/ThemeContext'
+import { NavbarStyled, NavStyled, LinkStyled, ItemOptionTheme } from './navbar.styles'
+import { useMediaQuery } from 'react-responsive'
 import { destroyCookie } from 'nookies'
-import { AnimatePresence } from 'framer-motion'
-import Menu from 'components/icons/menu'
 
-function Navbar ({ user, isMobileView }) {
-  const { theme, switchTheme } = useContext(ThemeContext)
-  const linkRef = useRef(null)
+function Navbar ({ links, navbarButton, user }) {
   const router = useRouter()
+  const { theme, switchTheme } = useContext(ThemeContext)
+  const [visibleMenu, setVisibleMenu] = useState(false)
+  const isMobile = useMediaQuery({
+    query: '(max-width: 768px)'
+  })
+
+  useEffect(() => console.log(isMobile), [isMobile])
+
+  useEffect(() => setVisibleMenu(false), [])
+
+  const sendToJoin = () => router.push(navbarButton.path)
 
   const changeTheme = () => {
-    toggleMenuMobile()
     switchTheme(theme.title)
+    visibleMenu && setVisibleMenu(false)
   }
 
-  const toggleMenuMobile = () => {
-      linkRef.current.style.right === '0px' ? linkRef.current.style.right = '-100%' : linkRef.current.style.right = '0px'
+  const toggleNav = () => {
+    isMobile && setVisibleMenu(!visibleMenu)
   }
 
-  return (
-    <Header>
-      <Link href={user ? '/dashboard' : '/'}>
-        <a><Logo /></a>
-      </Link>
-      <MenuMobileContainer onClick={toggleMenuMobile}>
-        <Menu size={21} />
-      </MenuMobileContainer>
-      <Links ref={linkRef}>
-        {/* eslint-disable-next-line multiline-ternary */}
-        { user ? <UserAction name={`${user.name}`} isMobileView={isMobileView} /> : (
-          <>
-            <Link href="/">
-              <a><Hyper active={router.pathname === '/'}>Inicio</Hyper></a>
-            </Link>
-            <Link href="/ingreso">
-              <a><Hyper active={router.pathname === '/ingreso'}>Ingreso</Hyper></a>
-            </Link>
-            <Link href="/registro">
-              <a><Button action={() => {}} compact primary>Registro</Button></a>
-            </Link>
-          </>
+  function logout () {
+    destroyCookie(null, 'auth-token')
+    destroyCookie(null, 'identifier')
+    localStorage.removeItem('r-as0dj')
+    localStorage.removeItem('r-as1dj')
+    router.push('/')
+  }
+
+  if (isMobile) {
+    return (
+      <NavbarStyled>
+        <Link href="/"><a>
+          <Image
+            src={`/static/logo-${theme.title}.svg`}
+            width="21"
+            height="21"
+            priority
+          />
+        </a></Link>
+        <HiCog
+            size={26}
+            color={theme.colors.body.color}
+            cursor="pointer"
+            onClick={toggleNav}
+          />
+        {visibleMenu && (
+          <NavStyled>
+            <LinksOptions links={links} design="full" />
+            {!user && <Button color="primary" design="full" onClick={sendToJoin}>{navbarButton.name}</Button>}
+            {user && <ItemOptionTheme>Logout <HiLogout size={24} onClick={logout} cursor="pointer" /></ItemOptionTheme>}
+            <ItemOptionTheme onClick={changeTheme}>
+              Apariencia
+              <IconTheme
+                theme={theme.title}
+                size={24}
+                color={theme.colors.body.color}
+                cursor="pointer"
+              />
+            </ItemOptionTheme>
+          </NavStyled>
         )}
-        <ToggleTheme action={changeTheme} />
-      </Links>
-    </Header>
-  )
-}
-
-function UserAction ({ name, isMobileView }) {
-  const [visible, setVisible] = useState(false)
-
-  const handleClick = () => {
-    destroyCookie(null, 'auth-token')
-    destroyCookie(null, 'identifier')
-    localStorage.removeItem('r-as0dj')
-    localStorage.removeItem('r-as1dj')
-    Router.push('/')
+      </NavbarStyled>
+    )
   }
 
   return (
-    <>
-    { isMobileView ?
-      <>
-        <MenuItem>Perfil <User /> </MenuItem>
-        <MenuItem onClick={handleClick} >Salir <Logout /> </MenuItem>
-      </>
-      : 
-        <WrapperMenu>
-          <TitleMenu onClick={() => setVisible(!visible)}>
-            <span>{name}</span>
-            <ChevronDown size={18} />
-          </TitleMenu>
-          <AnimatePresence>
-          {visible && <MenuUserAction onMouseLeave={() => setVisible(false)}/>}
-          </AnimatePresence>
-        </WrapperMenu>
-    }
-    </>
+    <NavbarStyled>
+      <Link href="/"><a>
+        <Image
+          src={`/static/logo-${theme.title}.svg`}
+          width="21"
+          height="21"
+          priority
+        />
+      </a></Link>
+      <NavStyled>
+        <LinksOptions links={links} />
+        {!user && <Button color="primary" design="compact" onClick={sendToJoin}>{navbarButton.name}</Button>}
+        {user && <HiLogout size={24} onClick={logout} cursor="pointer" />}
+        <IconTheme
+          theme={theme.title}
+          size={24}
+          color={theme.colors.body.color}
+          cursor="pointer"
+          onClick={changeTheme}
+        />
+      </NavStyled>
+    </NavbarStyled>
   )
 }
 
-function MenuUserAction ({ ...props }) {
-  const handleClick = () => {
-    destroyCookie(null, 'auth-token')
-    destroyCookie(null, 'identifier')
-    localStorage.removeItem('r-as0dj')
-    localStorage.removeItem('r-as1dj')
-    Router.push('/')
+const IconTheme = ({ theme, ...props }) => {
+  if (theme === 'light') {
+    return <HiMoon {...props} />
   }
+  return <HiSun {...props}/>
+}
 
+function LinksOptions ({ links, design }) {
   return (
-    <MenuContainer {...props} initial={{ y: -6, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 20, opacity: 0 }} >
-      <MenuItem>Perfil <User /> </MenuItem>
-      <MenuItem onClick={handleClick} >Salir <Logout /> </MenuItem>
-    </MenuContainer>
+    <> {
+        links.map(link =>
+          <Link key={link.path} href={link.path}>
+            <LinkStyled design={design}>{link.name}</LinkStyled>
+          </Link>
+        )
+    } </>
   )
 }
 

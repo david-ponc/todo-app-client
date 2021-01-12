@@ -25,7 +25,7 @@ export const Container = styled(motion.article)`
   }
 `
 
-export const Text = styled(motion.span)`
+export const Text = styled.span`
   font-size: 0.875rem;
   color: ${({ theme }) => theme.colors.task.text};
   user-select: none;

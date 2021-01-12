@@ -10,7 +10,7 @@ export const Wrapper = styled.form`
   border-radius: 11px;
   background: ${({ theme }) => theme.colors.taskCreator.background};
   position: relative;
-  margin-bottom: ${({ error }) => error ? '2.5rem' : '0'};
+  margin-bottom: ${({ error }) => error ? '3.5rem' : '1.5rem'};
   transition: margin-bottom .3s ease;
 `
 

@@ -42,3 +42,10 @@ export const Text = styled.p`
       font-size: 1rem;
   }
 `
+
+export const LinkStyled = styled.a`
+  font-weight: var(--medium);
+  font-size: var(--s-small);
+  color: ${({ theme }) => theme.colors.body.secondText};
+  justify-self: center;
+`

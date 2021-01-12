@@ -17,7 +17,7 @@ function setInputHeight (evt, initial) {
   }
 }
 
-export default function TaskCreator ({ tasks, setTasks, isMobileView }) {
+export default function TaskCreator ({ tasks, setTasks, isMobileView, placeholder }) {
   const [category, setCategory] = useState('')
   const [content, setContent] = useState('')
   const [error, setError] = useState('')
@@ -64,8 +64,8 @@ export default function TaskCreator ({ tasks, setTasks, isMobileView }) {
             placeholder={''}
             onChange={handleChange}
           />
-          {!content && !isMobileView && <PlaceholderStyled>Escribe tu tarea aqui. Presiona <EnterCommand/> para creala</PlaceholderStyled>}
-          {!content && isMobileView && <PlaceholderStyled>Presiona <EnterCommand/> para creala</PlaceholderStyled>}
+          {!content && !isMobileView && <PlaceholderStyled>{placeholder[0]} <EnterCommand/> {placeholder[1]}</PlaceholderStyled>}
+          {!content && isMobileView && <PlaceholderStyled><EnterCommand/> {placeholder[1]}</PlaceholderStyled>}
         </FieldContainer>
         <Dropdown category={category} setCategory={setCategory} />
         {error && <ErrorStyled initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}>{error}</ErrorStyled>}

@@ -1,46 +1,36 @@
 import styled from 'styled-components'
 
-export const Wrapper = styled.footer`
+export const FooterStyled = styled.footer`
   width: 100%;
-  position: sticky;
-  bottom: 0;
-  z-index: 3;
   background: ${({ theme }) => theme.colors.footer.background};
-  transition: background 320ms ease,
-  color 320ms ease,
-  border 320ms ease;
 `
 
-export const Container = styled.div`
-  max-width: var(--content-max-width);
+export const ContainerStyled = styled.div`
+  max-width: 1140px;
+  width: 100%;
   margin: 0 auto;
-  padding: 0.375rem 1em;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  @media screen and (max-width: 768px) {
-    grid-template-columns: auto 1fr auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  padding: .5rem 1.5rem;
+
+  font-size: var(--s-small);
+  color: ${({ theme }) => theme.colors.body.secondText};
+
+  & a {
+    color: ${({ theme }) => theme.colors.body.link};
+    font-weight: var(--medium);
   }
 `
 
-export const TextStyled = styled.span`
-  font-weight: 500;
-  font-size: 0.75rem;
-  color: ${({ theme }) => theme.colors.footer.color};
+export const AStyled = styled.a`
+  display: inline-flex;
+  align-items: center;
+  font-weight: var(--medium);
 
-  &:nth-child(2) {
-    justify-self: center;
+  & > svg {
+    margin-top: -2px;
+    margin-left: 2px;
   }
-
-  @media screen and (max-width: 768px) {
-    &:nth-child(2) {
-      grid-column: 3 / 4;
-      justify-self: flex-end;
-    }
-  }
-`
-
-export const LinkStyled = styled.a`
-  font-weight: 500;
-  font-size: 0.75rem;
-  color: ${({ theme }) => theme.colors.footer.link};
 `

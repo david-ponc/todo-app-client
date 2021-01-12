@@ -10,7 +10,6 @@ export const Field = styled.input`
   box-shadow: ${({ theme }) => theme.colors.field.border};
   ${({ theme, error }) => error && `box-shadow: ${theme.colors.field.borderError};`}
   width: 100%;
-  transition: all 0.3s ease;
   align-self: start;
   &::placeholder {
     color: ${({ theme }) => theme.colors.field.placeholder};
@@ -21,8 +20,6 @@ export const Field = styled.input`
 `
 
 export const Wrapper = styled.div`
-  //position: relative;
-  // margin-bottom: ${({ desc }) => desc ? '1.5rem' : '0px'};
   display: grid;
   grid-auto-flow: row;
   gap: 0.5rem;

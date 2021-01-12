@@ -14,12 +14,20 @@ const initialTasks = [
   { _id: '7638', content: 'Reunión para análisis de requerimientos', category: 'work', completed: false },
   { _id: '5634', content: 'Hacer un todo list', category: 'personal', completed: false }]
 
-function LandingPage ({ isMobileView }) {
+function LandingPage ({ t }) {
   const router = useRouter()
   const [tasks, setTasks] = useState([...initialTasks])
 
+  useEffect(() => {
+    const tTasks = tasks.map((task, i) => {
+      task.content = t.localTasks[i]
+      return task
+    })
+    setTasks(tTasks)
+  }, [])
+
   const sendStart = () => {
-    router.push('/ingreso').then(() => {})
+    router.push('/join').then(() => {})
   }
 
   useEffect(() => {
@@ -36,35 +44,35 @@ function LandingPage ({ isMobileView }) {
   return (
     <>
       <Head>
-        <title>To-Do List App | Bienvenido</title>
+        <title>To-do List</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar/>
-      <div>
+      <Navbar {...{ links: t.links, navbarButton: t.navbarButton }} />
+      <div style={{ maxWidth: '640px', margin: '0 auto' }}>
         <Landing initial="initial" animate="animate" exit="exit" variants={varsLanding}>
-          <Title>Crea tus tareas diarias</Title>
-          <Subtitle>adecúalo a tus necesidades</Subtitle>
-          <Leyend>Sube de nivel y desbloquea objetos</Leyend>
-          <Button action={sendStart} primary>Iniciar ahora</Button>
+          <Title>{t.title}</Title>
+          <Subtitle>{t.subtitle}</Subtitle>
+          <Leyend>{t.p}</Leyend>
+          <Button onClick={sendStart} color="primary">{t.landingButton}</Button>
         </Landing>
         {tasks.length === 0 && <div style={{ width: '32px', margin: '7rem auto 0' }}><Loader size={32} /></div>}
         <TaskContainer initial="initial" animate="animate" exit="exit" variants={varsLanding}>
-          <TaskList isMobile={isMobileView} tasks={tasks} action={taskCompleted} />
+          <TaskList tasks={tasks} action={taskCompleted} />
         </TaskContainer>
       </div>
     </>
   )
 }
 
-export async function getServerSideProps (ctx) {
-  const isMobileView = (ctx.req
-    ? ctx.req.headers['user-agent']
-    : navigator.userAgent).match(
-    /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
-  )
+export async function getServerSideProps () {
+  const initialTasks = [
+    { _id: '3452', content: 'Hacer el diseño de la web', category: 'work', completed: false },
+    { _id: '6543', content: 'Sacar la basura', category: 'home', completed: false },
+    { _id: '7638', content: 'Reunión para análisis de requerimientos', category: 'work', completed: false },
+    { _id: '5634', content: 'Hacer un todo list', category: 'personal', completed: false }]
   return {
     props: {
-      isMobileView
+      initialTasks
     }
   }
 }

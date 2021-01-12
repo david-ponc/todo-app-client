@@ -9,23 +9,31 @@ import { confirmAccount } from 'services/api'
 import Loader from 'react-loader-spinner'
 import { Container, Wrapper } from 'styles/confirm.styles'
 
-function ConfirmationPage () {
+function ConfirmationPage ({ t }) {
   const router = useRouter()
   const { token } = router.query
   const [isLoading, setLoading] = useState(true)
+  const [hasError, setError] = useState(false)
 
   useEffect(() => {
     confirmAccount(token)
       .then(res => {
-        setTimeout(() => {
+        if (!res?.error) {
+          setTimeout(() => {
+            setError(false)
+            setLoading(false)
+          }, 1000)
+        } else {
+          setError(true)
           setLoading(false)
-        }, 1000)
+          router.push('/')
+        }
       })
   }, [])
 
   if (isLoading) {
     return (
-      <Layout>
+      <Layout t={t}>
         <Loader
           type="Oval"
           color="var(--gray-500)"
@@ -37,29 +45,33 @@ function ConfirmationPage () {
   }
 
   return (
-    <Layout>
+    <Layout t={t}>
         <Wrapper initial="initial" animate="animate" exit="exit" vars={varsDashPage}>
-          <h4>¡Has confirmado tu cuenta con éxito!</h4>
-          <img src="/congrats-mail.svg" alt=""/>
-          <p>Ya estas listo para utilizar la aplicación 🥳</p>
-          <Link href="/ingreso">
-            <a>
-              <Button action={() => {}} primary>Iniciar ahora</Button>
-            </a>
-          </Link>
+          {!hasError && (
+            <>
+            <h4>{t.title}</h4>
+            <img src="/congrats-mail.svg" style={{ margin: '1.5rem 0' }} alt=""/>
+            <p>{t.p} 🥳</p>
+            <Link href="/login">
+              <a style={{ marginTop: '1.5rem' }}>
+                <Button color="primary">{t.linkButton}</Button>
+              </a>
+            </Link>
+            </>
+          )}
         </Wrapper>
     </Layout>
   )
 }
 
-function Layout ({ children }) {
+function Layout ({ children, t }) {
   return (
     <Fragment>
       <Head>
-        <title>To-Do List App | Confirmación de cuenta</title>
+        <title>{t.hTitle}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar/>
+      <Navbar {...{ links: t.links, navbarButton: t.navbarButton }} />
       <Container>
         {children}
       </Container>

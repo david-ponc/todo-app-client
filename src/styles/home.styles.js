@@ -27,6 +27,7 @@ export const Subtitle = styled.h2`
 export const Leyend = styled.h5`
   font-size: 1.125rem;
   color: ${({ theme }) => theme.colors.body.secondText};
+  margin-bottom: 1.5rem;
 `
 
 export const TaskContainer = styled(motion.section)`

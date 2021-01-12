@@ -52,13 +52,22 @@ const useForm = ({ initialFields }) => {
     setFields({ ...fields, [name]: field })
   }
 
+  const defineMessages = (messages) => {
+    messages.forEach(item => {
+      const { name, message } = item
+      fields[name].message = message
+      setFields({ ...fields, [name]: fields[name] })
+    })
+  }
+
   return {
     fields,
     errors,
     getInput: (name) => ({ name, value: fields[name].value, onChange }),
     getCheckbox: (name) => ({ name, checked: fields[name].value, onChange }),
     validationAll,
-    reset
+    reset,
+    defineMessages
   }
 }
 

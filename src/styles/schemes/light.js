@@ -14,7 +14,7 @@ export default {
     link: {
       default: 'var(--gray-500)',
       active: 'var(--gray-100)',
-      hover: 'var(--gray-700)'
+      hover: 'var(--gray-300)'
     },
     button: {
       primary: {
@@ -22,7 +22,7 @@ export default {
         text: 'var(--gray-100)',
         shadow: '0px 18px 24px -11px rgba(22, 23, 29, 0.16), inset 0px 0px 0px 1px rgba(143, 116, 36, 0.25)'
       },
-      secondary: {
+      neutral: {
         background: 'var(--gray-700)',
         text: 'var(--gray-100)',
         shadow: '0px 18px 24px -11px rgba(22, 23, 29, 0.16), inset 0px 0px 0px 1px rgba(22, 23, 29, 0.05)'
@@ -32,7 +32,7 @@ export default {
       background: 'var(--gray-800)',
       border: '0px 0px 0px 1px rgba(22, 23, 29, 0.09)',
       checked: 'var(--primary-400)',
-      color: 'var(--gray-300)'
+      color: 'var(--gray-200)'
     },
     task: {
       background: 'var(--gray-900)',

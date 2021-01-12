@@ -6,7 +6,6 @@ export const Main = styled(motion.main)`
   width: 100%;
   max-width: var(--content-max-width);
   margin: 3.5rem auto 1rem;
-  transition: padding 0.3s ease;
 
   @media screen and (max-width: 768px) {
     & {
@@ -18,6 +17,7 @@ export const Main = styled(motion.main)`
 export const Text = styled.p`
   font-size: 0.875rem;
   color: ${({ theme }) => theme.colors.body.secondText};
+  margin: 1rem 0;
   
   strong {
     color: ${({ theme }) => theme.colors.body.primaryText};

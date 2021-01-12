@@ -1,16 +1,27 @@
-import { Container, Wrapper, TextStyled, LinkStyled } from './footer.styles'
+import Link from 'next/link'
+import { DiGithubBadge } from 'react-icons/di'
+import { FooterStyled, AStyled, ContainerStyled } from './footer.styles'
 
-export default function Footer () {
+function Footer ({ content }) {
   return (
-    <Wrapper>
-      <Container>
-        <TextStyled>
-          Inspirado en <LinkStyled href="https://www.dona.ai/" target="_blank" >Dona 🍩</LinkStyled>
-        </TextStyled>
-        <TextStyled style={{ justifySelf: 'center' }}>
-          David Ponce • {new Date().getFullYear()} • <LinkStyled href="https://github.com/davidp46" target="_blank" >Github</LinkStyled>
-        </TextStyled>
-      </Container>
-    </Wrapper>
+    <FooterStyled>
+      <ContainerStyled>
+        <span>
+          {`${content} `}
+          <Link href="/dona" ><a>
+            Dona 🍩
+          </a></Link>
+        </span>
+        <span>
+          David Ponce • {' '}
+          {new Date().getFullYear()} • {' '}
+          <Link href="/github"><AStyled>
+            Github <DiGithubBadge size={21} />
+          </AStyled></Link>
+        </span>
+      </ContainerStyled>
+    </FooterStyled>
   )
 }
+
+export default Footer

@@ -20,14 +20,14 @@ export const Wrapper = styled(motion.main)`
 
 export const Form = styled.form`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
   
   & > p {
     grid-column: 1 / span 2;
   }
   
-  button {
+  & > button {
     grid-column: 1 / span 2;
   }
 
@@ -63,4 +63,11 @@ export const Text = styled.p`
 export const Terms = styled.p`
   font-size: 0.875rem;
   color: ${({ theme }) => theme.colors.body.secondText};
+`
+
+export const LinkStyled = styled.a`
+  font-weight: var(--medium);
+  font-size: var(--s-small);
+  color: ${({ theme }) => theme.colors.body.secondText};
+  display: block;
 `

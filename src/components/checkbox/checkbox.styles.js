@@ -1,17 +1,36 @@
-import { motion } from 'framer-motion'
 import styled from 'styled-components'
+import { HiCheck } from 'react-icons/hi'
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.label`
   display: grid;
   grid-template-columns: 18px auto;
   gap: 0.875rem;
   align-items: center;
 `
 
-export const Container = styled(motion.label)`
+export const CheckboxStyled = styled.div`
   cursor: pointer;
-  width: 18px;
-  height: 18px;
+  width: ${({ size }) => `${size}px`};
+  height: ${({ size }) => `${size}px`};
+  border-radius: 0.4375rem;
+  background: ${({ theme, state }) => !state ? theme.colors.check.background : theme.colors.check.checked};
+  box-shadow: ${({ theme }) => theme.colors.check.border};
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+export const HiCheckStyled = styled(HiCheck)`
+  fill: ${({ theme }) => theme.colors.check.color};
+  color: ${({ theme }) => theme.colors.check.color};
+  stroke-width: 1.125;
+  margin-top: 1px;
+`
+
+export const Label = styled.span`
+  font-size: 0.875rem;
+  color: ${({ theme }) => theme.colors.body.secondText};
 `
 
 export const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
@@ -26,25 +45,4 @@ export const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
   white-space: nowrap;
   width: 1px;
   display: none;
-`
-
-export const CustomCheckbox = styled.div`
-  width: 100%;
-  height: 100%;
-  border-radius: 3px;
-  display: grid;
-  place-items: center;
-  background: ${({ theme, checked }) => checked ? theme.colors.check.checked : theme.colors.check.background};
-  box-shadow: ${({ theme }) => theme.colors.check.border};
-  color: ${({ theme }) => theme.colors.check.color};
-  transition: background 230ms ease;
-
-  & > svg {
-    visibility: ${({ checked }) => checked ? 'visible' : 'hidden'};
-  }
-`
-
-export const Label = styled.span`
-  font-size: 0.875rem;
-  color: ${({ theme }) => theme.colors.body.secondText};
 `

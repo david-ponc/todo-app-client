@@ -1,11 +1,8 @@
 import Checkbox from 'components/checkbox'
-import Personal from 'components/icons/personal'
-import Work from 'components/icons/work'
-import Home from 'components/icons/home'
-import { varsTask, varsTextTask } from 'styles/variants'
+import { varsTask } from 'styles/variants'
 import { Container, Text } from './task.styles'
 import { useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+import { HiBriefcase, HiHome, HiUser } from 'react-icons/hi'
 
 export default function Task ({ text, category, taskCompleted, isMobile }) {
   const [checked, setChecked] = useState(false)
@@ -15,9 +12,8 @@ export default function Task ({ text, category, taskCompleted, isMobile }) {
     checked && taskCompleted()
   }, [checked])
 
-  const handleChange = evt => {
-    const { checked } = evt.target
-    checked && setChecked(checked)
+  const handleChange = () => {
+    !checked && setChecked(true)
   }
 
   return (
@@ -28,15 +24,13 @@ export default function Task ({ text, category, taskCompleted, isMobile }) {
       exit="exit"
       variants={varsTask}
     >
-      <Checkbox checked={checked} onChange={handleChange} />
-        <motion.div style={{ position: 'static' }} initial={isMobile ? 'hovered' : 'initial'} variants={varsTextTask}>
-        <Text ref={textRef} checked={checked}>
-          {text}
-        </Text>
-      </motion.div>
-      {category === 'work' && <Work />}
-      {category === 'personal' && <Personal />}
-      {category === 'home' && <Home />}
+      <Checkbox checked={checked} size={21} onChange={handleChange} />
+      <Text ref={textRef} checked={checked}>
+        {text}
+      </Text>
+      {category === 'work' && <HiBriefcase size={21} />}
+      {category === 'personal' && <HiUser size={21} />}
+      {category === 'home' && <HiHome size={21} />}
     </Container>
   )
 }

@@ -2,25 +2,26 @@ import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import useForm from 'hooks/useForm'
-import { login, register } from 'services/api'
+import { login } from 'services/api'
 import Navbar from 'components/navbar'
 import Button from 'components/button'
 import Checkbox from 'components/checkbox'
 import TextField from 'components/text_field'
 import Alert from 'components/alert'
 import { varsForm } from 'styles/variants'
-import { Container, Form, Main, Text, Title } from 'styles/acceso.styles'
+import { Form, Main, Title, LinkStyled } from 'styles/acceso.styles'
+import Link from 'next/link'
 
 const initialFields = {
   email: {
     value: '',
-    message: 'El correo electrónico debe tener un formato válido',
+    message: '',
     regex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     failed: false
   },
   password: {
     value: '',
-    message: 'La contraseña debe contener al menos un mayúscula, un numero, un caracter especial y un minimo de 8 caracteres',
+    message: '',
     regex: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}/,
     failed: false
   },
@@ -29,13 +30,14 @@ const initialFields = {
   }
 }
 
-function SignInPage () {
+function SignInPage ({ t }) {
   const router = useRouter()
   const form = useForm({ initialFields })
   const [alertManager, setAlertState] = useState({ visible: false, error: '' })
   const [processing, setProcess] = useState(false)
 
   useEffect(() => {
+    form.defineMessages(t.fields)
     return () => {
       form.reset()
     }
@@ -64,34 +66,34 @@ function SignInPage () {
   return (
     <>
       <Head>
-        <title>To-Do List App | Acceso</title>
+        <title>To-do List | Acceso</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar/>
+      <Navbar {...{ links: t.links, navbarButton: t.navbarButton }} />
        <Alert type="error" title="Tuvimos problemas" content={alertManager.error} visible={alertManager.visible} action={setAlertState}/>
       <Main>
         <Form onSubmit={handleSubmit} initial="initial" animate="animate" exit="exit" variants={varsForm}>
-          <Title>Únete a nosotros y mantén tus tareas bajo control</Title>
-          <Container>
-            <Button action={() => console.log('')}>Google</Button>
-            <Button action={() => console.log('')}>Github</Button>
+          <Title>{t.title}</Title>
+          {/* <Container>
+            <Button color="neutral" >Google</Button>
+            <Button color="neutral" >Github</Button>
           </Container>
-          <Text>o inicia sesión con tu correo</Text>
-          <TextField error={form.fields.email} type="email" placeholder="ejemplo@dominio.com" {...form.getInput('email')} />
+          <Text>{t.p}</Text> */}
+          <TextField error={form.fields.email} type="email" placeholder={t.phEmail} {...form.getInput('email')} />
           <TextField
             error={form.fields.password}
             type="password"
-            placeholder="Clave de seguridad"
-            desc="La clave debe tener al menos 8 caracteres"
+            placeholder={t.phPass}
+            desc={t.descPass}
             {...form.getInput('password')}
           />
           <Checkbox
-            initial={false}
-            variants={false}
-            label="Recordar credenciales"
+            size={21}
+            label={t.chkRemember}
             {...form.getCheckbox('remember')}
           />
-          <Button action={() => {}} processing={processing} primary>Iniciar ahora</Button>
+          <Button processing={processing} color="primary">{t.submitButton}</Button>
+          <Link href="/join"><LinkStyled>{t.finalLink}</LinkStyled></Link>
         </Form>
       </Main>
     </>
