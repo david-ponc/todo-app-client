@@ -8,7 +8,7 @@ export const Container = styled.div`
   place-items: center;
   @media screen and (max-width: 768px) {
     & {
-      padding: 0 1rem;
+      padding: 0 2rem;
     }
   }
 `

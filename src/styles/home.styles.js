@@ -5,6 +5,11 @@ export const Landing = styled(motion.main)`
   max-width: var(--content-max-width);
   margin: 3.5rem auto 1.5rem;
   text-align: center;
+  @media screen and (max-width: 768px) {
+    & {
+      padding: 0 1rem;
+    }
+  }
 `
 
 export const Title = styled.h1`
@@ -20,7 +25,8 @@ export const Subtitle = styled.h2`
   font-weight: 300;
   @media screen and (max-width: 768px) {
     & {
-      line-height: 1;
+      margin: 0.5rem 0;
+      line-height: 1.1;
     }
   }
 `
@@ -35,7 +41,7 @@ export const TaskContainer = styled(motion.section)`
   margin: 5rem auto 1rem;
   @media screen and (max-width: 768px) {
     & {
-      padding: 0 1rem;
+      padding: 0 1.5rem;
     }
   }
   /* display: grid;

@@ -18,7 +18,7 @@ export const Form = styled(motion.form)`
   @media screen and (max-width: 768px) {
       max-width: 100%;
       width: 100%;
-      padding: 0 1rem;
+      padding: 0 2rem;
   }
 `
 
