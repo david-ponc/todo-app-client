@@ -31,8 +31,8 @@ function Navbar ({ links, navbarButton, user }) {
   }
 
   function logout () {
-    destroyCookie(null, 'auth-token')
-    destroyCookie(null, 'identifier')
+    destroyCookie(null, 'auth-token', { path: '/' })
+    destroyCookie(null, 'identifier', { path: '/' })
     localStorage.removeItem('r-as0dj')
     localStorage.removeItem('r-as1dj')
     router.push('/')

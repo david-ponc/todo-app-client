@@ -73,8 +73,8 @@ function DashboardPage ({ serverTasks, user, t }) {
   )
 }
 
-export async function getServerSideProps (ctx) {
-  const { 'auth-token': authToken, identifier } = parseCookies(ctx)
+export async function getServerSideProps () {
+  const { 'auth-token': authToken, identifier } = parseCookies(null, { path: '/' })
   let serverTasks = []
   let user = {}
   const { error, hasProfileData, profile } = await getUser(identifier, authToken)
@@ -85,8 +85,8 @@ export async function getServerSideProps (ctx) {
       serverTasks = [...tasks]
     }
   } else {
-    destroyCookie(ctx, 'identifier')
-    destroyCookie(ctx, 'auth-token')
+    destroyCookie(null, 'identifier', { path: '/' })
+    destroyCookie(null, 'auth-token', { path: '/' })
     console.log(error)
   }
   return {
