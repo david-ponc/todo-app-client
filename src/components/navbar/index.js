@@ -35,7 +35,7 @@ function Navbar ({ links, navbarButton, user }) {
     destroyCookie(null, 'identifier', { path: '/' })
     localStorage.removeItem('r-as0dj')
     localStorage.removeItem('r-as1dj')
-    router.push('/')
+    router.push('/', '/', { locale: `${router.locale}` })
   }
 
   if (isMobile) {
