@@ -92,7 +92,7 @@ function SignInPage ({ t }) {
             label={t.chkRemember}
             {...form.getCheckbox('remember')}
           />
-          <Button processing={processing} color="primary">{t.submitButton}</Button>
+          <Button loading={processing} color="primary">{t.submitButton}</Button>
           <Link href="/join" locale={router.locale} passHref><LinkStyled>{t.finalLink}</LinkStyled></Link>
         </Form>
       </Main>

@@ -1,8 +1,11 @@
 import styled from 'styled-components'
+import Loader from 'components/Loader'
 
-function Button ({ color = 'primary', design = 'normal', children, ...props }) {
+function Button ({ color = 'primary', design = 'normal', loading = false, children, ...props }) {
   return (
-    <ButtonStyled color={color} design={design} {...props}>{children}</ButtonStyled>
+    <ButtonStyled color={color} design={design} {...props}>
+      {loading ? <Loader size={16} /> : children }
+    </ButtonStyled>
   )
 }
 

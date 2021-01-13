@@ -121,7 +121,7 @@ function FormRegister ({ form, handleSubmit, processing, t, locale }) {
         <TextField error={form.fields.password} placeholder={t.phPass} type="password" desc={t.descPass} {...form.getInput('password')} />
         <TextField error={form.fields.confirm} placeholder={t.phConfirm} type="password" {...form.getInput('confirm')} />
         <Terms>{t.p}</Terms>
-        <Button processing={processing} color="primary">{t.submitButton}</Button>
+        <Button loading={processing} color="primary">{t.submitButton}</Button>
         <Link href="/login" locale={locale} passHref><LinkStyled>{t.finalLink}</LinkStyled></Link>
       </Form>
     </>
