@@ -9,6 +9,7 @@ import useForm from 'hooks/useForm'
 import { register } from 'services/api'
 import { useState, useEffect } from 'react'
 import Alert from '../components/alert'
+import { useRouter } from 'next/router'
 
 const initialFields = {
   name: {
@@ -50,6 +51,7 @@ const initialFields = {
 }
 
 function RegisterPage ({ t }) {
+  const { locale } = useRouter()
   const form = useForm({ initialFields })
   const [alertManager, setAlertState] = useState({ visible: false, error: '' })
   const [isSuccessProcess, setSuccessProcess] = useState(false)
@@ -101,12 +103,12 @@ function RegisterPage ({ t }) {
 
   return (
     <Layout t={t} setAlertState={setAlertState} alertManager={alertManager} navbar={{ links: t.links, navbarButton: t.navbarButton }}>
-      <FormRegister t={t} form={form} processing={processing} handleSubmit={handleSubmit}/>
+      <FormRegister locale={locale} t={t} form={form} processing={processing} handleSubmit={handleSubmit}/>
     </Layout>
   )
 }
 
-function FormRegister ({ form, handleSubmit, processing, t }) {
+function FormRegister ({ form, handleSubmit, processing, t, locale }) {
   return (
     <>
       <Title>{t.title}</Title>
@@ -120,7 +122,7 @@ function FormRegister ({ form, handleSubmit, processing, t }) {
         <TextField error={form.fields.confirm} placeholder={t.phConfirm} type="password" {...form.getInput('confirm')} />
         <Terms>{t.p}</Terms>
         <Button processing={processing} color="primary">{t.submitButton}</Button>
-        <Link href="/login"><LinkStyled>{t.finalLink}</LinkStyled></Link>
+        <Link href="/login" locale={locale} passHref><LinkStyled>{t.finalLink}</LinkStyled></Link>
       </Form>
     </>
   )

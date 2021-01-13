@@ -25,9 +25,11 @@ export default function Task ({ text, category, taskCompleted, isMobile }) {
       variants={varsTask}
     >
       <Checkbox checked={checked} size={21} onChange={handleChange} />
-      <Text ref={textRef} checked={checked}>
-        {text}
-      </Text>
+      <div>
+        <Text ref={textRef} checked={checked}>
+          {text}
+        </Text>
+      </div>
       {category === 'work' && <HiBriefcase size={21} />}
       {category === 'personal' && <HiUser size={21} />}
       {category === 'home' && <HiHome size={21} />}

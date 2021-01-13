@@ -13,7 +13,7 @@ import en from 'locales/en'
 function MyApp ({ Component, pageProps }) {
   const { theme } = useContext(ThemeContext)
   const { locale, route } = useRouter()
-  const t = locale === 'es' ? es : en
+  const t = locale === 'en' ? en : es
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />

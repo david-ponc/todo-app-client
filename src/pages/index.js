@@ -27,7 +27,7 @@ function LandingPage ({ t }) {
   }, [])
 
   const sendStart = () => {
-    router.push('/join').then(() => {})
+    router.push('/join', '/join', { locale: `${router.locale}` })
   }
 
   useEffect(() => {

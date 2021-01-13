@@ -34,8 +34,8 @@ export default {
     chkRemember: 'Recordar credenciales',
     submitButton: 'Iniciar ahora',
     fields: [
-      'El correo electrónico debe tener un formato válido',
-      'La contraseña debe contener al menos un mayúscula, un numero, un carácter especial y un mínimo de 8 caracteres'
+      { name: 'email', message: 'El correo electrónico debe tener un formato válido' },
+      { name: 'email', message: 'La contraseña debe contener al menos un mayúscula, un numero, un carácter especial y un mínimo de 8 caracteres' }
     ],
     finalLink: '¿No tienes cuenta?,. Crea una'
   },

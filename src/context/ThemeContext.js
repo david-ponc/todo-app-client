@@ -14,13 +14,7 @@ export function ThemeContextProvider ({ children }) {
   const [theme, setTheme] = useState(light)
 
   useEffect(() => {
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (evt) => {
-      if (evt.matches) {
-        setTheme(THEMES.dark)
-      } else {
-        setTheme(THEMES.light)
-      }
-    })
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', handlePrefersColorScheme)
     if (parseCookies()?.theme) {
       const { theme } = parseCookies()
       setTheme(THEMES[theme])
@@ -32,9 +26,17 @@ export function ThemeContextProvider ({ children }) {
       }
     }
     return () => {
-      window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change')
+      window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', handlePrefersColorScheme)
     }
   }, [])
+
+  const handlePrefersColorScheme = ({ matches }) => {
+    if (matches) {
+      setTheme(THEMES.dark)
+    } else {
+      setTheme(THEMES.light)
+    }
+  }
 
   const switchTheme = (current) => {
     const switched = current === 'light' ? 'dark' : 'light'

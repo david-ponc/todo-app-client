@@ -19,7 +19,7 @@ function Navbar ({ links, navbarButton, user }) {
 
   useEffect(() => setVisibleMenu(false), [])
 
-  const sendToJoin = () => router.push(navbarButton.path)
+  const sendToJoin = () => router.push(navbarButton.path, '/join', { locale: `${router.locale}` })
 
   const changeTheme = () => {
     switchTheme(theme.title)
@@ -41,7 +41,7 @@ function Navbar ({ links, navbarButton, user }) {
   if (isMobile) {
     return (
       <NavbarStyled>
-        <Link href="/"><a>
+        <Link href="/" locale={router.locale}><a>
           <Image
             src={`/static/logo-${theme.title}.svg`}
             width="21"
@@ -57,7 +57,7 @@ function Navbar ({ links, navbarButton, user }) {
           />
         {visibleMenu && (
           <NavStyled>
-            <LinksOptions links={links} design="full" />
+            <LinksOptions links={links} locale={router.locale} design="full" />
             {!user && <Button color="primary" design="full" onClick={sendToJoin}>{navbarButton.name}</Button>}
             {user && <ItemOptionTheme>Logout <HiLogout size={24} onClick={logout} cursor="pointer" /></ItemOptionTheme>}
             <ItemOptionTheme onClick={changeTheme}>
@@ -86,7 +86,7 @@ function Navbar ({ links, navbarButton, user }) {
         />
       </a></Link>
       <NavStyled>
-        <LinksOptions links={links} />
+        <LinksOptions links={links} locale={router.locale} />
         {!user && <Button color="primary" design="compact" onClick={sendToJoin}>{navbarButton.name}</Button>}
         {user && <HiLogout size={24} onClick={logout} cursor="pointer" />}
         <IconTheme
@@ -108,11 +108,11 @@ const IconTheme = ({ theme, ...props }) => {
   return <HiSun {...props}/>
 }
 
-function LinksOptions ({ links, design }) {
+function LinksOptions ({ links, design, locale }) {
   return (
     <> {
         links.map(link =>
-          <Link key={link.path} href={link.path}>
+          <Link key={link.path} href={link.path} locale={locale} passHref >
             <LinkStyled design={design}>{link.name}</LinkStyled>
           </Link>
         )
