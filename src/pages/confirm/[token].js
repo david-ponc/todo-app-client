@@ -6,7 +6,7 @@ import Navbar from 'components/navbar'
 import Button from 'components/button'
 import { varsDashPage } from 'styles/variants'
 import { confirmAccount } from 'services/api'
-import Loader from 'react-loader-spinner'
+import Loader from 'components/Loader'
 import { Container, Wrapper } from 'styles/confirm.styles'
 
 function ConfirmationPage ({ t }) {
@@ -35,10 +35,7 @@ function ConfirmationPage ({ t }) {
     return (
       <Layout t={t}>
         <Loader
-          type="Oval"
-          color="var(--gray-500)"
-          height={40}
-          width={40}
+          size={40}
         />
       </Layout>
     )
