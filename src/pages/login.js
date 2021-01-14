@@ -66,7 +66,7 @@ function SignInPage ({ t }) {
   return (
     <>
       <Head>
-        <title>To-do List | Acceso</title>
+        <title>{t.hTitle}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar {...{ links: t.links, navbarButton: t.navbarButton }} />
