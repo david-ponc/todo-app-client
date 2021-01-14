@@ -66,7 +66,12 @@ export default {
       { name: 'password', message: 'The password must contain at least one capital letter, one number, one special character and a minimum of 8 characters' },
       { name: 'confirm', message: 'The confirmation must contain at least one capital letter, one number, one special character and a minimum of 8 characters' }
     ],
-    finalLink: 'Already have an account? Sign in'
+    finalLink: 'Already have an account? Sign in',
+    successContent: {
+      title: 'You have finished your registration successfully',
+      subtitle: 'We have sent you an email, to confirm your account',
+      p: 'You can now close this tab'
+    }
   },
   '/confirm/[token]': {
     hTitle: 'To do list | Confirm account',

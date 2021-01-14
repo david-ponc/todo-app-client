@@ -131,10 +131,10 @@ function FormRegister ({ form, handleSubmit, processing, t, locale }) {
 function SuccessContent ({ fullName, t }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <h3 style={{ textAlign: 'center' }}>¡{fullName}, Has terminado tu registro con éxito!</h3>
+      <h3 style={{ textAlign: 'center' }}>¡{fullName}, {t.successContent.title}!</h3>
       <img style={{ margin: '2rem auto' }} src="/send-mail.svg" alt=""/>
-      <p style={{ textAlign: 'center' }}>Te hemos enviado un correo electrónico, para confirmar tu cuenta</p>
-      <p style={{ textAlign: 'center', fontSize: '0.75rem', fontWeight: 500 }}>Ya puedes cerrar esta pestaña</p>
+      <p style={{ textAlign: 'center' }}>{t.successContent.subtitle}</p>
+      <p style={{ textAlign: 'center', fontSize: '0.75rem', fontWeight: 500 }}>{t.successContent.p}</p>
     </div>
   )
 }
