@@ -17,7 +17,6 @@ const initialTasks = [
 function LandingPage ({ t }) {
   const router = useRouter()
   const [tasks, setTasks] = useState([...initialTasks])
-  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const tTasks = tasks.map((task, i) => {
@@ -28,8 +27,6 @@ function LandingPage ({ t }) {
   }, [])
 
   const sendStart = () => {
-    setLoading(true)
-    setTimeout(() => setLoading(false), 220)
     router.push('/join', '/join', { locale: `${router.locale}` })
   }
 
@@ -56,7 +53,7 @@ function LandingPage ({ t }) {
           <Title>{t.title}</Title>
           <Subtitle>{t.subtitle}</Subtitle>
           <Leyend>{t.p}</Leyend>
-          <Button loading={loading} onClick={sendStart} color="primary">{t.landingButton}</Button>
+          <Button onClick={sendStart} color="primary">{t.landingButton}</Button>
         </Landing>
         {tasks.length === 0 && <div style={{ width: '32px', margin: '7rem auto 0' }}><Loader size={32} /></div>}
         <TaskContainer initial="initial" animate="animate" exit="exit" variants={varsLanding}>

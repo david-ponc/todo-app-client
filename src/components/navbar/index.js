@@ -77,7 +77,7 @@ function Navbar ({ links, navbarButton, user }) {
 
   return (
     <NavbarStyled>
-      <Link href="/" locale={router.locale}><a>
+      <Link href="/" as="/" locale={router.locale}><a>
         <Image
           src={`/static/logo-${theme.title}.svg`}
           width="21"

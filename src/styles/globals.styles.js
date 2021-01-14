@@ -30,6 +30,7 @@ export const GlobalStyle = createGlobalStyle`
     grid-auto-flow: column;
     grid-template-rows: auto 1fr auto;
     min-height: 100vh;
+    font-family: Poppins, system-ui;
   }
 
   a {
@@ -42,6 +43,7 @@ export const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
     margin: 0;
+    font-family: Poppins, system-ui;
   }
 
   h1 {
