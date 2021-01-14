@@ -20,7 +20,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     padding: 0;
     margin: 0;
-    font-family: Poppins, system-ui;
+    font-family: 'Poppins', system-ui, sans-serif;
     background: ${({ theme }) => theme.colors.body.background};
     color: ${({ theme }) => theme.colors.body.text};
   }
@@ -30,7 +30,7 @@ export const GlobalStyle = createGlobalStyle`
     grid-auto-flow: column;
     grid-template-rows: auto 1fr auto;
     min-height: 100vh;
-    font-family: Poppins, system-ui;
+    font-family: 'Poppins', system-ui, sans-serif;
   }
 
   a {
@@ -43,7 +43,7 @@ export const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
     margin: 0;
-    font-family: Poppins, system-ui;
+    font-family: 'Poppins', system-ui, sans-serif;
   }
 
   h1 {
@@ -76,7 +76,7 @@ export const GlobalStyle = createGlobalStyle`
   input {
     border: 0;
     outline: 0;
-    font-family: Poppins, system-ui;
+    font-family: 'Poppins', system-ui, sans-serif;
   }
 
   button {
