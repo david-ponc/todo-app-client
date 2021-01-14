@@ -34,6 +34,7 @@ export const typography = css`
     url('/fonts/poppins-v15-latin-300.woff') format('woff'), /* Modern Browsers */
     url('/fonts/poppins-v15-latin-300.ttf') format('truetype'), /* Safari, Android, iOS */
     url('/fonts/poppins-v15-latin-300.svg#Poppins') format('svg'); /* Legacy iOS */
+    font-display: block;
   }
   /* poppins-regular - latin */
   @font-face {
@@ -47,6 +48,7 @@ export const typography = css`
     url('/fonts/poppins-v15-latin-regular.woff') format('woff'), /* Modern Browsers */
     url('/fonts/poppins-v15-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
     url('/fonts/poppins-v15-latin-regular.svg#Poppins') format('svg'); /* Legacy iOS */
+    font-display: block;
   }
   /* poppins-500 - latin */
   @font-face {
@@ -60,6 +62,7 @@ export const typography = css`
     url('/fonts/poppins-v15-latin-500.woff') format('woff'), /* Modern Browsers */
     url('/fonts/poppins-v15-latin-500.ttf') format('truetype'), /* Safari, Android, iOS */
     url('/fonts/poppins-v15-latin-500.svg#Poppins') format('svg'); /* Legacy iOS */
+    font-display: block;
   }
   /* poppins-600 - latin */
   @font-face {
@@ -73,6 +76,7 @@ export const typography = css`
     url('/fonts/poppins-v15-latin-600.woff') format('woff'), /* Modern Browsers */
     url('/fonts/poppins-v15-latin-600.ttf') format('truetype'), /* Safari, Android, iOS */
     url('/fonts/poppins-v15-latin-600.svg#Poppins') format('svg'); /* Legacy iOS */
+    font-display: block;
   }
   /* poppins-700 - latin */
   @font-face {
@@ -86,5 +90,6 @@ export const typography = css`
     url('/fonts/poppins-v15-latin-700.woff') format('woff'), /* Modern Browsers */
     url('/fonts/poppins-v15-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
     url('/fonts/poppins-v15-latin-700.svg#Poppins') format('svg'); /* Legacy iOS */
+    font-display: block;
   }
 `
