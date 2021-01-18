@@ -96,7 +96,7 @@ function RegisterPage ({ t }) {
   if (isSuccessProcess) {
     return (
       <Layout t={t} navbar={{ links: t.links, navbarButton: t.navbarButton }}>
-        <SuccessContent fullName={`${form.fields.name.value} ${form.fields.surname.value}`}/>
+        <SuccessContent t={t} fullName={`${form.fields.name.value} ${form.fields.surname.value}`}/>
       </Layout>
     )
   }
