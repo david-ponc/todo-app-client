@@ -37,7 +37,7 @@ export default {
       { name: 'email', message: 'El correo electrónico debe tener un formato válido' },
       { name: 'password', message: 'La contraseña debe contener al menos un mayúscula, un numero, un carácter especial y un mínimo de 8 caracteres' }
     ],
-    finalLink: '¿No tienes cuenta?,. Crea una'
+    finalLink: '¿No tienes cuenta? Crea una'
   },
   '/join': {
     hTitle: 'Lista de pendientes | Registro',
@@ -65,7 +65,7 @@ export default {
       { name: 'password', message: 'La contraseña debe contener al menos un mayúscula, un numero, un carácter especial y un mínimo de 8 caracteres' },
       { name: 'confirm', message: 'La confirmación debe contener al menos un mayúscula, un numero, un carácter especial y un mínimo de 8 caracteres' }
     ],
-    finalLink: '¿Ya tienes cuenta?,. Ingresa a tu cuenta',
+    finalLink: '¿Ya tienes cuenta? Ingresa a tu cuenta',
     successContent: {
       title: 'Has terminado tu registro con éxito',
       subtitle: 'Te hemos enviado un correo electrónico, para confirmar tu cuenta',
