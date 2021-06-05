@@ -18,6 +18,6 @@ module.exports = {
     defaultLocale: 'es'
   },
   env: {
-    URL_API: process.env.URL_API || 'https://evening-sands-17123.herokuapp.com/'
+    URL_API: process.env.URL_API || 'https://evening-sands-17123.herokuapp.com'
   }
 }
