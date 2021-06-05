@@ -18,6 +18,6 @@ module.exports = {
     defaultLocale: 'es'
   },
   env: {
-    URL_API: process.env.URL_API || 'https://www.api.deicode.studio'
+    URL_API: process.env.URL_API || 'https://evening-sands-17123.herokuapp.com/'
   }
 }
