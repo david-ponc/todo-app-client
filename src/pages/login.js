@@ -60,6 +60,7 @@ function SignInPage ({ t }) {
           router.push('/dashboard')
         } else {
           setAlertState({ visible: true, error })
+          setProcess(false)
         }
       }
     }
