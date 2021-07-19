@@ -19,7 +19,7 @@ const ButtonStyled = styled.button`
   box-shadow: ${({ theme, color }) => theme.colors.button[COLOR[color]].shadow};
   user-select: none;
   width: ${({ design }) => design === 'full' ? DESIGN[design] : 'auto'};
-  cursor: ${({ loading }) => loading ? 'pointer' : 'not-allowed'}
+  cursor: ${({ loading }) => loading ? 'not-allowed' : 'pointer'}
 `
 
 const COLOR = {
