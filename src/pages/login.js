@@ -45,20 +45,22 @@ function SignInPage ({ t }) {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault()
-    setProcess(true)
-    form.validationAll(form.fields)
-    if (form.fields.email.failed || form.fields.password.failed) {
-      setProcess(false)
-    } else {
-      const { isValidCredentials, error } = await login({
-        email: form.fields.email.value,
-        password: form.fields.password.value
-      }, form.fields.remember.value)
-      if (isValidCredentials) {
+    if (!processing) {
+      setProcess(true)
+      form.validationAll(form.fields)
+      if (form.fields.email.failed || form.fields.password.failed) {
         setProcess(false)
-        router.push('/dashboard')
       } else {
-        setAlertState({ visible: true, error })
+        const { isValidCredentials, error } = await login({
+          email: form.fields.email.value,
+          password: form.fields.password.value
+        }, form.fields.remember.value)
+        if (isValidCredentials) {
+          setProcess(false)
+          router.push('/dashboard')
+        } else {
+          setAlertState({ visible: true, error })
+        }
       }
     }
   }
