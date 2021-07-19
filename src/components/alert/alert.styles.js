@@ -16,7 +16,7 @@ export const Wrapper = styled(motion.div)`
   right: 0;
   top: 5rem;
   box-shadow: ${({ theme }) => theme.colors.alert.shadow};
-  z-index: 5;
+  z-index: 100;
   ${({ theme, type }) => type === 'success' && `background: ${theme.colors.alert.success.background};`}
   ${({ theme, type }) => type === 'error' && `background: ${theme.colors.alert.error.background};`}
   ${({ theme, type }) => type === 'warning' && `background: ${theme.colors.alert.warning.background};`}
