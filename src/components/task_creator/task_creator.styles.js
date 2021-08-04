@@ -55,5 +55,6 @@ export const PlaceholderStyled = styled.span`
   display: grid;
   grid-auto-flow: column;
   align-items: center;
-  gap: .5em;
+  gap: 0.5em;
+  white-space: nowrap;
 `
