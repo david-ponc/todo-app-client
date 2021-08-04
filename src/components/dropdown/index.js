@@ -29,7 +29,7 @@ export default function Dropdown ({ category, setCategory }) {
       </Tape>
       <AnimatePresence>
         { visible &&
-          (<ItemsContainer onMouseLeave={() => setVisible(false)} initial={{ y: -6, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 20, opacity: 0 }}>
+          (<ItemsContainer initial={{ y: -6, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 20, opacity: 0 }}>
             {
               categories.map(({ title, icon, meta }, i) => {
                 return (
