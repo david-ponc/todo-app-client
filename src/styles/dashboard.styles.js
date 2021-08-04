@@ -31,6 +31,13 @@ export const Greeting = styled.h1`
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   display: inline-block;
+
+  @media screen and (max-width: 768px) {
+    & {
+      --h1: 2.75rem;
+      line-height: 1.2;
+    }
+  }
 `
 
 export const ActualDate = styled.h3`
