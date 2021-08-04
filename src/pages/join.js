@@ -66,29 +66,32 @@ function RegisterPage ({ t }) {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault()
-    setProcess(true)
-    form.validationAll(form.fields)
-    if (form.fields.name.failed ||
-        form.fields.surname.failed ||
-        form.fields.username.failed ||
-        form.fields.email.failed ||
-        form.fields.password.failed ||
-        form.fields.confirm.failed) {
-      setProcess(false)
-    } else {
-      const internaut = {
-        name: form.fields.name.value,
-        surname: form.fields.surname.value,
-        username: form.fields.username.value,
-        email: form.fields.email.value,
-        password: form.fields.password.value
-      }
-      const { isRegistered, error } = await register({ internaut })
-      setProcess(false)
-      if (isRegistered) {
-        setSuccessProcess(true)
+    if (!processing) {
+      setProcess(true)
+      form.validationAll(form.fields)
+      if (form.fields.name.failed ||
+          form.fields.surname.failed ||
+          form.fields.username.failed ||
+          form.fields.email.failed ||
+          form.fields.password.failed ||
+          form.fields.confirm.failed) {
+        setProcess(false)
       } else {
-        setAlertState({ visible: true, error })
+        const internaut = {
+          name: form.fields.name.value,
+          surname: form.fields.surname.value,
+          username: form.fields.username.value,
+          email: form.fields.email.value,
+          password: form.fields.password.value
+        }
+        const { isRegistered, error } = await register({ internaut })
+        setProcess(false)
+        if (isRegistered) {
+          setSuccessProcess(true)
+        } else {
+          setAlertState({ visible: true, error })
+          setProcess(false)
+        }
       }
     }
   }
