@@ -66,7 +66,7 @@ export default {
       color: 'var(--gray-600)',
       border: '0px 0px 0px 0.5px rgba(22, 23, 29, 0.09), 0px 6px 24px -8px rgba(22, 24, 29, 0.25)',
       hover: 'var(--gray-700)',
-      itemColor: 'var(--gray-600)',
+      itemColor: 'var(--gray-500)',
       itemHover: 'var(--gray-400)',
       itemColorActive: 'var(--primary-400)',
       itemHoverActive: 'var(--primary-300)'
