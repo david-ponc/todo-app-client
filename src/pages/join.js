@@ -182,13 +182,7 @@ function FormRegister({ form, handleSubmit, processing, t, locale }) {
 				<Button loading={processing} color='primary'>
 					{t.submitButton}
 				</Button>
-				<Link
-					legacyBehavior
-					legacyBehavior
-					href='/login'
-					locale={locale}
-					passHref
-				>
+				<Link legacyBehavior href='/login' locale={locale} passHref>
 					<LinkStyled>{t.finalLink}</LinkStyled>
 				</Link>
 			</Form>

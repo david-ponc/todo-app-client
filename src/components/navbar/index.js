@@ -49,7 +49,6 @@ function Navbar({ links, navbarButton, user }) {
 			<NavbarStyled>
 				<Link
 					legacyBehavior
-					legacyBehavior
 					href={user?.username ? '/dashboard' : '/'}
 					locale={router.locale}
 				>
@@ -100,7 +99,6 @@ function Navbar({ links, navbarButton, user }) {
 		<NavbarStyled>
 			<Link
 				legacyBehavior
-				legacyBehavior
 				href={user?.username ? '/dashboard' : '/'}
 				as={user?.username ? '/dashboard' : '/'}
 				locale={router.locale}
@@ -147,7 +145,6 @@ function LinksOptions({ links, design, locale }) {
 			{' '}
 			{links.map(link => (
 				<Link
-					legacyBehavior
 					legacyBehavior
 					key={link.path}
 					href={link.path}

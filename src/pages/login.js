@@ -118,13 +118,7 @@ function SignInPage({ t }) {
 					<Button loading={processing} color='primary'>
 						{t.submitButton}
 					</Button>
-					<Link
-						legacyBehavior
-						legacyBehavior
-						href='/join'
-						locale={router.locale}
-						passHref
-					>
+					<Link legacyBehavior href='/join' locale={router.locale} passHref>
 						<LinkStyled>{t.finalLink}</LinkStyled>
 					</Link>
 				</Form>
