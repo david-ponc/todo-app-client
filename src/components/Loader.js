@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { keyframes } from 'styled-components';
 
 export const rotate = keyframes`
   from {
@@ -8,7 +8,7 @@ export const rotate = keyframes`
   to {
     transform: rotate(360deg);
   }
-`
+`;
 
 export const multicolor = keyframes`
   0% {
@@ -22,21 +22,19 @@ export const multicolor = keyframes`
   100% {
     text-shadow: 0 4px 16px #FFDDBD;
   }
-`
+`;
 
 const LoaderStyled = styled.div`
-  width: ${({ size }) => `${size}`}px;
-  height: ${({ size }) => `${size}`}px;
-  border-radius: 50%;
-  background-color: transparent;
-  border: ${({ size }) => 0.125 * parseInt(size)}px solid rgba(0,0,0,0.32) ;
-  border-left-color: ${({ theme }) => theme.colors.loader.color};
-  margin: 0 auto;
-  animation: ${rotate} 1.5s linear infinite;
-`
+	width: ${({ size }) => `${size}`}px;
+	height: ${({ size }) => `${size}`}px;
+	border-radius: 50%;
+	background-color: transparent;
+	border: ${({ size }) => 0.125 * parseInt(size)}px solid rgba(0, 0, 0, 0.32);
+	border-left-color: ${({ theme }) => theme.colors.loader.color};
+	margin: 0 auto;
+	animation: ${rotate} 1.5s linear infinite;
+`;
 
-export default function Loader ({ size }) {
-  return (
-    <LoaderStyled size={size} />
-  )
+export default function Loader({ size }) {
+	return <LoaderStyled size={size} />;
 }

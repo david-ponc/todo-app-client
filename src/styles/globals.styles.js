@@ -1,6 +1,6 @@
-import { createGlobalStyle } from 'styled-components'
-import { colors } from './color.styles'
-import { typography } from './font.styles'
+import { createGlobalStyle } from 'styled-components';
+import { colors } from './color.styles';
+import { typography } from './font.styles';
 
 export const GlobalStyle = createGlobalStyle`
   /* Colors variables */
@@ -82,4 +82,4 @@ export const GlobalStyle = createGlobalStyle`
   button {
     cursor: pointer;
   }
-`
+`;
