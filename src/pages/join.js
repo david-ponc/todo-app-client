@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 import Navbar from 'components/navbar';
 import TextField from 'components/text_field';
 import Button from 'components/button';
@@ -70,7 +71,7 @@ function RegisterPage({ t }) {
 		return () => {
 			form.reset();
 		};
-	}, []);
+	}, [t.fields]);
 
 	const handleSubmit = async evt => {
 		evt.preventDefault();
@@ -198,7 +199,13 @@ function SuccessContent({ fullName, t }) {
 			<h3 style={{ textAlign: 'center' }}>
 				¡{fullName}, {t.successContent.title}!
 			</h3>
-			<img style={{ margin: '2rem auto' }} src='/send-mail.svg' alt='' />
+			<Image
+				style={{ margin: '2rem auto' }}
+				width={128}
+				height={128}
+				src='/send-mail.svg'
+				alt='Image of send mail'
+			/>
 			<p style={{ textAlign: 'center' }}>{t.successContent.subtitle}</p>
 			<p style={{ textAlign: 'center', fontSize: '0.75rem', fontWeight: 500 }}>
 				{t.successContent.p}

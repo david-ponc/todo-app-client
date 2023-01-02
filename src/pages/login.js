@@ -41,7 +41,7 @@ function SignInPage({ t }) {
 		return () => {
 			form.reset();
 		};
-	}, []);
+	}, [t.fields]);
 
 	const handleSubmit = async evt => {
 		evt.preventDefault();

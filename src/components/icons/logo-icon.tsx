@@ -11,7 +11,7 @@ function LogoIcon(props: Props) {
 			strokeMiterlimit='2'
 			clipRule='evenodd'
 			viewBox='0 0 34 32'
-			width='auto'
+			width='24'
 			height='24'
 		>
 			<path
