@@ -1,4 +1,4 @@
-export default {
+const lightScheme = {
 	title: 'light',
 	colors: {
 		body: {
@@ -123,3 +123,5 @@ export default {
 		}
 	}
 };
+
+export default lightScheme;
