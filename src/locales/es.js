@@ -119,11 +119,11 @@ export default {
 		navbarButton: { name: 'Sign up', path: '/join' },
 		footer: 'Inspirado en',
 		greetings: [
-			'Buena madrugada',
-			'Buena mañana',
-			'Buen día',
-			'Buena tarde',
-			'Buena noche'
+			'Buenas noches',
+			'Buenos días',
+			'Buenos días',
+			'Buenas tardes',
+			'Buenas noches'
 		],
 		date: 'Hoy es weekday, day de month',
 		countTasks: ['Tienes', 'tareas pendientes'],
