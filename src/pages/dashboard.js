@@ -45,14 +45,14 @@ function showDate(locale, date) {
 function DashboardPage({ serverTasks, user, t }) {
 	const router = useRouter();
 	const [tasks, setTasks] = useState(serverTasks);
-	const [greeting, setGreeting] = useState(getGreeting(t.greetings));
+	const [greeting, setGreeting] = useState(() => getGreeting(t.greetings));
 
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setGreeting(getGreeting(t.greetings));
 		}, 5000);
 		return () => clearInterval(interval);
-	}, [greeting]);
+	}, [greeting, t.greetings]);
 
 	const taskCompleted = task => {
 		const { _id: id } = task;

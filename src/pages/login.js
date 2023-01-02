@@ -73,7 +73,7 @@ function SignInPage({ t }) {
 		<>
 			<Head>
 				<title>{t.hTitle}</title>
-				<Link legacyBehavior rel='icon' href='/favicon.ico' />
+				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<Navbar {...{ links: t.links, navbarButton: t.navbarButton }} />
 			<Alert

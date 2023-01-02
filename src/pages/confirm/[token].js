@@ -72,7 +72,7 @@ function Layout({ children, t }) {
 		<Fragment>
 			<Head>
 				<title>{t.hTitle}</title>
-				<Link legacyBehavior rel='icon' href='/favicon.ico' />
+				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<Navbar {...{ links: t.links, navbarButton: t.navbarButton }} />
 			<Container>{children}</Container>

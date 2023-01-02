@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Button from 'components/button';
 import { HiMoon, HiSun, HiCog, HiLogout } from 'react-icons/hi';
+import LogoIcon from 'components/icons/logo-icon';
 import ThemeContext from 'context/ThemeContext';
 import {
 	NavbarStyled,
@@ -53,12 +53,7 @@ function Navbar({ links, navbarButton, user }) {
 					locale={router.locale}
 				>
 					<a>
-						<Image
-							src={`/static/logo-${theme.title}.svg`}
-							width='21'
-							height='21'
-							priority
-						/>
+						<LogoIcon />
 					</a>
 				</Link>
 				<HiCog
@@ -104,12 +99,7 @@ function Navbar({ links, navbarButton, user }) {
 				locale={router.locale}
 			>
 				<a>
-					<Image
-						src={`/static/logo-${theme.title}.svg`}
-						width='21'
-						height='21'
-						priority
-					/>
+					<LogoIcon />
 				</a>
 			</Link>
 			<NavStyled>
