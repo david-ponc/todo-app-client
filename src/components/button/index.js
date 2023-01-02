@@ -5,11 +5,17 @@ function Button({
 	color = 'primary',
 	design = 'normal',
 	loading = false,
+	disabled = false,
 	children,
 	...props
 }) {
 	return (
-		<ButtonStyled color={color} design={design} {...props}>
+		<ButtonStyled
+			color={color}
+			design={design}
+			disabled={loading || disabled}
+			{...props}
+		>
 			{loading ? <Loader size={16} /> : children}
 		</ButtonStyled>
 	);
@@ -27,7 +33,8 @@ const ButtonStyled = styled.button`
 	box-shadow: ${({ theme, color }) => theme.colors.button[COLOR[color]].shadow};
 	user-select: none;
 	width: ${({ design }) => (design === 'full' ? DESIGN[design] : 'auto')};
-	cursor: ${({ loading }) => (loading ? 'not-allowed' : 'pointer')};
+	cursor: ${({ loading, disabled }) =>
+		loading || disabled ? 'not-allowed' : 'pointer'};
 `;
 
 const COLOR = {
