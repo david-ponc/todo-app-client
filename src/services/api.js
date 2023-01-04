@@ -1,4 +1,4 @@
-import { setCookie, destroyCookie, parseCookies } from 'nookies';
+import { setCookie, parseCookies } from 'nookies';
 
 async function register(internaut) {
 	const response = await fetch(`${process.env.URL_API}/users/auth/sign-up`, {
