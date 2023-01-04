@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 export default function TaskList({ tasks, action, isMobile }) {
 	const taskCompleted = task => {
-		action(task);
+		action(task._id);
 	};
 	return (
 		<AnimatePresence>

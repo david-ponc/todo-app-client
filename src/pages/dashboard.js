@@ -54,17 +54,14 @@ function DashboardPage({ serverTasks, user, t }) {
 		return () => clearInterval(interval);
 	}, [greeting, t.greetings]);
 
-	const taskCompleted = task => {
-		const { _id: id } = task;
-		const newTasks = tasks.filter(({ _id: idItem }) => idItem !== id);
-		setTimeout(async () => {
-			const { 'auth-token': authToken } = parseCookies(null);
-			await completeTask(authToken, {
-				identifier: user.username,
-				taskIdentifier: id
-			});
-			setTasks(newTasks);
-		}, 1000);
+	const taskCompleted = async id => {
+		const { 'auth-token': authToken } = parseCookies(null);
+		await completeTask(authToken, {
+			identifier: user.username,
+			taskIdentifier: id
+		});
+
+		setTasks(prevTasks => prevTasks.filter(({ _id }) => _id !== id));
 	};
 
 	return (
