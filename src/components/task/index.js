@@ -4,9 +4,16 @@ import { Container, Text } from './task.styles';
 import { useEffect, useRef, useState } from 'react';
 import { HiBriefcase, HiHome, HiUser } from 'react-icons/hi';
 
+const ICONS_BY_CATEGORY = {
+	work: HiBriefcase,
+	personal: HiUser,
+	home: HiHome
+};
+
 export default function Task({ text, category, taskCompleted, isMobile }) {
 	const [checked, setChecked] = useState(false);
 	const textRef = useRef(null);
+	const Icon = ICONS_BY_CATEGORY[category];
 
 	useEffect(() => {
 		checked && taskCompleted();
@@ -30,9 +37,7 @@ export default function Task({ text, category, taskCompleted, isMobile }) {
 					{text}
 				</Text>
 			</div>
-			{category === 'work' && <HiBriefcase size={21} />}
-			{category === 'personal' && <HiUser size={21} />}
-			{category === 'home' && <HiHome size={21} />}
+			<Icon size={21} />
 		</Container>
 	);
 }
